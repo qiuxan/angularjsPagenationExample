@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="paginationApp">
+
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS Pagination Example</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body ng-controller="PaginationController">
+  <div class="container">
+    <h2>AngularJS Pagination Example</h2>
+
+    <div class="form-group">
+      <label for="itemsPerPageSelect">Items per page:</label>
+      <select id="itemsPerPageSelect" class="form-control" ng-model="itemsPerPage" ng-change="setCurrentPage(1)">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+      </select>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Item</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in displayedItems">
+          <td>{{ item }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ul class="pagination">
+      <li ng-click="navigateToPreviousPages()"><a href="#"><</a></li>
+      <li ng-class="{ 'active': currentPage === page }" ng-repeat="page in visiblePages" ng-click="setCurrentPage(page)">
+        <a href="">{{ page }}</a>
+      </li>
+      <li ng-click="navigateToNextPages()"><a href="#">></a></li>
+    </ul>
+
+    <p>Item {{ rangeStart }}-{{ rangeEnd }} of {{ totalItems }}</p>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
